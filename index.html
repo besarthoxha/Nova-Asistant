@@ -115,6 +115,14 @@ const msgsEl=document.getElementById('msgs');
 const inpEl=document.getElementById('inp');
 const sbEl=document.getElementById('sb');
 
+  let audioUnlocked=false;
+document.addEventListener('click',()=>{
+  if(!audioUnlocked){
+    const a=new Audio();
+    a.play().catch(()=>{});
+    audioUnlocked=true;
+  }
+},{once:false});
 window.addEventListener('load',()=>{
   const savedMem=localStorage.getItem('nova_mem');
   if(savedMem){try{mem=JSON.parse(savedMem);}catch(e){}}
