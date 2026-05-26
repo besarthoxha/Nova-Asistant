@@ -178,6 +178,9 @@ function startApp(){
   addMsg('nova','Cka kem sot Boss?');
   document.getElementById('inp').focus();
 }
+  window.addEventListener('load', function(){
+  startApp();
+});
   const errEl=document.getElementById('s-err');
   if(!name){
     errEl.style.display='block';
