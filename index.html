@@ -172,7 +172,12 @@ window.addEventListener('load',()=>{
 });
 
 function startApp(){
-  const name=document.getElementById('name-inp').value.trim();
+  document.getElementById('setup').style.display='none';
+  document.getElementById('app').style.display='flex';
+  updMem();
+  addMsg('nova','Cka kem sot Boss?');
+  document.getElementById('inp').focus();
+}
   const errEl=document.getElementById('s-err');
   if(!name){
     errEl.style.display='block';
