@@ -111,7 +111,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
     </div>
     <div id="hdr-right">
       <button id="reset-btn" onclick="resetApp()" title="Reset">⚙</button>
-   </div>
+    </div>
   </div>
   <div id="mbar"><span id="mtags"><span style="font-size:10px;font-family:monospace;color:var(--text3)">mem://empty — thuaj "mbaje mend..."</span></span></div>
   <div id="msgs"></div>
@@ -172,15 +172,7 @@ window.addEventListener('load',()=>{
 });
 
 function startApp(){
-  document.getElementById('setup').style.display='none';
-  document.getElementById('app').style.display='flex';
-  updMem();
-  addMsg('nova','Cka kem sot Boss?');
-  document.getElementById('inp').focus();
-}
-  window.addEventListener('load', function(){
-  startApp();
-});
+  const name=document.getElementById('name-inp').value.trim();
   const errEl=document.getElementById('s-err');
   if(!name){
     errEl.style.display='block';
