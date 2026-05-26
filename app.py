@@ -1,4 +1,4 @@
-from flask import Flask, send_file, request, jsonify
+from flask import Flask, send_file, request, jsonify, Response
 import requests
 import os
 
@@ -23,6 +23,26 @@ def chat():
         headers=headers
     )
     return jsonify(res.json())
+
+@app.route('/speak', methods=['POST'])
+def speak():
+    el_key = os.environ.get('EL_KEY', '')
+    data = request.json
+    text = data.get('text', '')
+    voice_id = 'cgSgspJ2msm6clMCkdW9'
+    res = requests.post(
+        f'https://api.elevenlabs.io/v1/text-to-speech/{voice_id}',
+        headers={
+            'Content-Type': 'application/json',
+            'xi-api-key': el_key
+        },
+        json={
+            'text': text,
+            'model_id': 'eleven_multilingual_v2',
+            'voice_settings': {'stability': 0.5, 'similarity_boost': 0.75}
+        }
+    )
+    return Response(res.content, mimetype='audio/mpeg')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
