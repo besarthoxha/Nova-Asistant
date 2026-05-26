@@ -233,7 +233,18 @@ function showTyp(){
 }
 
 function remTyp(){const t=document.getElementById('typ');if(t)t.remove();}
-
+async function speak(text){
+  try{
+    const res=await fetch('/speak',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({text:text})
+    });
+    const blob=await res.blob();
+    const audio=new Audio(URL.createObjectURL(blob));
+    audio.play();
+  }catch(e){console.log('Voice error:',e);}
+}
 async function go(){
   const text=inpEl.value.trim();
   if(!text||busy)return;
@@ -259,6 +270,7 @@ async function go(){
     if(data.error)throw new Error(data.error.message);
     const reply=data.content.filter(b=>b.type==='text').map(b=>b.text||'').join('');
     remTyp();addMsg('nova',reply);
+vspeak(reply);
     hist.push({role:'assistant',content:data.content});
   }catch(e){
     remTyp();addMsg('nova','Dicka shkoi keq, Boss: '+e.message);
