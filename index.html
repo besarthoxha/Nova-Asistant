@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="sq">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0045)file:///C:/Users/ADMIN/Downloads/index_1.html -->
+<html lang="sq"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Nova">
 <meta name="theme-color" content="#0a0a0f">
 <title>Nova 2.0</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="./index html_files/css2" rel="stylesheet">
 <style>
-:root {
+:root{
   --bg:#0a0a0f;--surface:#111118;--surface2:#1a1a24;
   --border:rgba(130,120,220,0.15);--border2:rgba(130,120,220,0.3);
   --accent:#8278dc;--accent2:#a99ef0;--glow:rgba(130,120,220,0.12);
@@ -24,7 +24,8 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 /* SETUP */
 #setup{width:400px;background:var(--surface);border:0.5px solid var(--border2);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:18px;position:relative}
 #setup::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
-.s-logo{font-size:26px;font-weight:700;letter-spacing:.1em}.s-logo span{color:var(--accent2)}
+.s-logo{font-size:26px;font-weight:700;letter-spacing:.1em}
+.s-logo span{color:var(--accent2)}
 .s-sub{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);margin-top:-10px}
 .s-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);margin-bottom:5px;letter-spacing:.05em}
 .s-inp{width:100%;background:var(--surface2);border:0.5px solid var(--border2);border-radius:10px;padding:11px 14px;font-size:13px;font-family:'DM Mono',monospace;color:var(--text);outline:none;transition:border-color .2s}
@@ -78,8 +79,6 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(226,75,74,.3)}50%{box-shadow:0 0 0 6px rgba(226,75,74,0)}}
 #vstatus{display:none;padding:5px 16px;font-family:'DM Mono',monospace;font-size:10px;color:var(--red);border-top:0.5px solid var(--border);text-align:center;flex-shrink:0}
 @media(max-width:540px){#app{width:100vw;height:100vh;border-radius:0;border:none}#setup{width:90vw;padding:24px}}
-.vp-btn{font-size:11px;font-family:'DM Mono',monospace;padding:4px 10px;border-radius:6px;border:0.5px solid rgba(130,120,220,0.3);background:transparent;color:#4e4a68;cursor:pointer;transition:all .15s;}
-.vp-btn:hover{background:rgba(130,120,220,0.12);color:#a99ef0;border-color:#8278dc;}
 </style>
 </head>
 <body>
@@ -90,21 +89,16 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
     <div class="s-logo">NOV<span>A</span> 2.0</div>
     <div class="s-sub">asistent personal // besarti hoxha</div>
   </div>
-  <div>
-    <div class="s-label">// ANTHROPIC API KEY</div>
-    <input class="s-inp" id="key-inp" type="password" placeholder="sk-ant-api03-..." autocomplete="off" spellcheck="false">
-  </div>
   <div class="s-note">
-    Merr API key falas nga <a href="https://console.anthropic.com/settings/api-keys" target="_blank">console.anthropic.com</a><br>
-    Settings → API Keys → Create Key → kopjo dhe ngjit ketu.<br>
-    Ruhet vetem ne browser tend, nuk shkon gjekundi.
+    Vendos emrin tend per ta personalizuar Noven.<br>
+    API keys ruhen ne server — te sigurta.
   </div>
   <div>
-    <div class="s-label">// ELEVENLABS API KEY (per ze)</div>
-    <input class="s-inp" id="el-inp" type="password" placeholder="sk_..." autocomplete="off" spellcheck="false">
+    <div class="s-label">// EMRI YT</div>
+    <input class="s-inp" id="name-inp" type="text" placeholder="Besart" autocomplete="off">
   </div>
-  <div class="s-err" id="s-err">Anthropic Key gabim — duhet te filloje me sk-ant-</div>
-  <button class="s-btn" onclick="startApp()">AKTIVIZO NOVAN &#10148;</button>
+  <div class="s-err" id="s-err">Shkruaj emrin tend!</div>
+  <button class="s-btn" onclick="startApp()">AKTIVIZO NOVAN ➤</button>
 </div>
 
 <!-- APP -->
@@ -116,50 +110,22 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       <div id="hsub"><span id="sdot"></span><span id="mcnt">mem://0 objects</span></div>
     </div>
     <div id="hdr-right">
-      <button id="reset-btn" onclick="resetKey()" title="Ndrro API Key">&#9881;</button>
+      <button id="reset-btn" onclick="resetApp()" title="Reset">⚙</button>
     </div>
   </div>
-  <div id="mbar"><span id="mtags"><span style="font-size:10px;font-family:'DM Mono',monospace;color:var(--text3)">mem://empty — thuaj "mbaje mend..."</span></span></div>
+  <div id="mbar"><span id="mtags"><span style="font-size:10px;font-family:monospace;color:var(--text3)">mem://empty — thuaj "mbaje mend..."</span></span></div>
   <div id="msgs"></div>
-  <div id="vstatus">&#9679; duke degjuar...</div>
+  <div id="vstatus">● duke degjuar...</div>
   <div id="qrow">
-    <button class="qb" onclick="sq('Si eshte Inter kete sezon?')">inter</button>
-    <button class="qb" onclick="sq('Mbaje mend: jam tifoz i Interit')">mbaje mend</button>
-    <button class="qb" onclick="sq('Cfare di per mua?')">cfare di?</button>
-    <button class="qb" onclick="sq('Bej nje shaka shqip')">shaka</button>
-    <button class="qb" onclick="sq('Vizualizo: bej nje grafik shitjesh per 6 muajt e fundit me te dhena shembull')">grafik</button>
-    <button class="qb" onclick="vizPanel()">&#9783; viz</button>
+    <button class="qb" onclick="sq(&#39;Si eshte Inter kete sezon?&#39;)">inter</button>
+    <button class="qb" onclick="sq(&#39;Mbaje mend: jam tifoz i Interit&#39;)">mbaje mend</button>
+    <button class="qb" onclick="sq(&#39;Cfare di per mua?&#39;)">cfare di?</button>
+    <button class="qb" onclick="sq(&#39;Bej nje shaka shqip&#39;)">shaka</button>
   </div>
   <div id="iarea">
     <textarea id="inp" placeholder="Shkruaj, Boss..." rows="1"></textarea>
-    <button class="ibtn" id="mic-btn" onclick="toggleVoice()" title="Voice">&#127908;</button>
-    <button class="ibtn" id="sb" onclick="go()">&#10148;</button>
-  </div>
-</div>
-
-<!-- VIZ MODAL -->
-<div id="viz-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:100;align-items:center;justify-content:center;">
-  <div style="background:#111118;border:0.5px solid rgba(130,120,220,0.3);border-radius:16px;width:90vw;max-width:700px;max-height:85vh;overflow:hidden;display:flex;flex-direction:column;">
-    <div style="padding:14px 18px;border-bottom:0.5px solid rgba(130,120,220,0.15);display:flex;align-items:center;gap:10px;">
-      <span style="font-family:'DM Mono',monospace;font-size:13px;color:#a99ef0;font-weight:500;">NOVA VISUALIZER</span>
-      <button onclick="closeViz()" style="margin-left:auto;background:transparent;border:0.5px solid rgba(130,120,220,0.3);border-radius:6px;color:#4e4a68;cursor:pointer;padding:4px 10px;font-size:12px;font-family:'DM Mono',monospace;">&#10005; mbyll</button>
-    </div>
-    <div style="padding:12px 16px;border-bottom:0.5px solid rgba(130,120,220,0.15);">
-      <textarea id="viz-prompt" placeholder="Pershkruaj cfare don te vizualizosh... psh: grafik shitjesh Janar-Qershor, diagram organizimi, kapak libri..." style="width:100%;background:#1a1a24;border:0.5px solid rgba(130,120,220,0.3);border-radius:8px;padding:10px 14px;font-size:13px;font-family:'Syne',sans-serif;color:#e8e6f8;resize:none;outline:none;height:60px;line-height:1.5;"></textarea>
-      <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
-        <button class="vp-btn" onclick="setVizPrompt('Grafik shitjesh mujore: Janar 8500, Shkurt 9200, Mars 7800, Prill 11000, Maj 10500, Qershor 12000')">shitjet</button>
-        <button class="vp-btn" onclick="setVizPrompt('Grafik pie per shpenzimet: Qera 35%, Paga 40%, Materiale 15%, Tjera 10%')">shpenzimet</button>
-        <button class="vp-btn" onclick="setVizPrompt('Kapak libri fantasy me titullin dhe emrin tim')">kapak libri</button>
-        <button class="vp-btn" onclick="setVizPrompt('Diagram organizimi i kompanise sime')">org chart</button>
-      </div>
-    </div>
-    <div id="viz-output" style="flex:1;overflow-y:auto;padding:16px;min-height:300px;display:flex;align-items:center;justify-content:center;">
-      <span style="font-family:'DM Mono',monospace;font-size:11px;color:#4e4a68;">rezultati shfaqet ketu...</span>
-    </div>
-    <div style="padding:10px 16px;border-top:0.5px solid rgba(130,120,220,0.15);display:flex;gap:8px;">
-      <button onclick="generateViz()" id="viz-gen-btn" style="flex:1;padding:10px;background:#8278dc;border:none;border-radius:8px;color:white;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;cursor:pointer;">GJENERO VIZUALIZIMIN &#10148;</button>
-      <button onclick="downloadViz()" id="viz-dl-btn" style="padding:10px 14px;background:transparent;border:0.5px solid rgba(130,120,220,0.3);border-radius:8px;color:#a99ef0;font-family:'DM Mono',monospace;font-size:12px;cursor:pointer;display:none;">&#8659; shkarko</button>
-    </div>
+    <button class="ibtn" id="mic-btn" onclick="toggleVoice()" title="Voice">🎤</button>
+    <button class="ibtn" id="sb" onclick="go()">➤</button>
   </div>
 </div>
 
@@ -187,66 +153,58 @@ MEMORY SYSTEM:
 - Perdore memoryen natyrshëm
 - Kur pyet per memoria — shfaq gjithcka`;
 
-let API_KEY='';
-let EL_KEY='';
-const EL_VOICE_ID='cgSgspJ2msm6clMCkdW9'; // Clara
+let userName='Boss';
 let mem={notes:[],clients:[],family:[]};
 let hist=[];
 let busy=false;
 let recognition=null;
 let isListening=false;
-let voiceEnabled=false;
 
-// Load saved data
 window.addEventListener('load',()=>{
-  const saved=localStorage.getItem('nova_key');
-  if(saved){document.getElementById('key-inp').value=saved;}
-  const savedEl=localStorage.getItem('nova_el_key');
-  if(savedEl){EL_KEY=savedEl;document.getElementById('el-inp').value=savedEl;}
+  const savedName=localStorage.getItem('nova_name');
+  if(savedName){
+    userName=savedName;
+    document.getElementById('name-inp').value=savedName;
+  }
   const savedMem=localStorage.getItem('nova_mem');
   if(savedMem){try{mem=JSON.parse(savedMem);}catch(e){}}
   initVoice();
 });
 
 function startApp(){
-  const key=document.getElementById('key-inp').value.trim();
+  const name=document.getElementById('name-inp').value.trim();
   const errEl=document.getElementById('s-err');
-  if(!key||!key.startsWith('sk-ant-')){
+  if(!name){
     errEl.style.display='block';
-    document.getElementById('key-inp').style.borderColor='var(--red)';
-    setTimeout(()=>{errEl.style.display='none';document.getElementById('key-inp').style.borderColor='';},3000);
+    setTimeout(()=>{errEl.style.display='none';},2000);
     return;
   }
-  API_KEY=key;
-  localStorage.setItem('nova_key',key);
-  const elKey=document.getElementById('el-inp').value.trim();
-  if(elKey){EL_KEY=elKey;localStorage.setItem('nova_el_key',elKey);}
+  userName=name;
+  localStorage.setItem('nova_name',name);
   document.getElementById('setup').style.display='none';
   document.getElementById('app').style.display='flex';
   updMem();
-  addMsg('nova','Nova 2.0 online, Boss. Memory aktive dhe e kalibur. Cfare kemi sot?');
+  addMsg('nova','Nova 2.0 online, '+name+'. Memory aktive dhe e kalibur. Cfare kemi sot?');
   document.getElementById('inp').focus();
 }
 
-function resetKey(){
-  if(!confirm('Ndrro API key?'))return;
-  localStorage.removeItem('nova_key');
-  API_KEY='';
-  document.getElementById('app').style.display='none';
-  document.getElementById('setup').style.display='flex';
-  document.getElementById('key-inp').value='';
+function resetApp(){
+  if(!confirm('Reset Nova?'))return;
+  localStorage.clear();
+  location.reload();
 }
 
-// MEMORY
 function updMem(){
   const total=mem.notes.length+mem.clients.length+mem.family.length;
-  document.getElementById('mcnt').textContent=`mem://${total} objects`;
+  document.getElementById('mcnt').textContent='mem://'+total+' objects';
   const all=[...mem.notes,...mem.clients.map(c=>c.name||String(c)),...mem.family.map(f=>f.name||String(f))];
   document.getElementById('mtags').innerHTML=all.length===0
-    ?'<span style="font-size:10px;font-family:DM Mono,monospace;color:var(--text3)">mem://empty — thuaj "mbaje mend..."</span>'
-    :all.slice(0,6).map(n=>`<span class="mtag">${String(n).slice(0,26)}</span>`).join('');
+    ?'<span style="font-size:10px;font-family:monospace;color:var(--text3)">mem://empty — thuaj "mbaje mend..."</span>'
+    :all.slice(0,6).map(n=>'<span class="mtag">'+String(n).slice(0,26)+'</span>').join('');
 }
+
 function saveMem(){localStorage.setItem('nova_mem',JSON.stringify(mem));}
+
 function chkMem(text){
   if(/^mbaje mend/i.test(text)){
     const info=text.replace(/^mbaje mend\s*/i,'').trim();
@@ -254,7 +212,6 @@ function chkMem(text){
   }
 }
 
-// MESSAGES
 const msgsEl=document.getElementById('msgs');
 const inpEl=document.getElementById('inp');
 const sbEl=document.getElementById('sb');
@@ -266,6 +223,7 @@ function addMsg(role,text){
   const b=document.createElement('div');b.className='bbl';b.textContent=text;
   w.appendChild(b);msgsEl.appendChild(w);msgsEl.scrollTop=msgsEl.scrollHeight;
 }
+
 function showTyp(){
   const d=document.createElement('div');d.className='msg n';d.id='typ';
   const a=document.createElement('div');a.className='mav';a.textContent='N';
@@ -273,9 +231,9 @@ function showTyp(){
   b.innerHTML='<div class="dt"></div><div class="dt"></div><div class="dt"></div>';
   d.appendChild(a);d.appendChild(b);msgsEl.appendChild(d);msgsEl.scrollTop=msgsEl.scrollHeight;
 }
+
 function remTyp(){const t=document.getElementById('typ');if(t)t.remove();}
 
-// SEND
 async function go(){
   const text=inpEl.value.trim();
   if(!text||busy)return;
@@ -286,19 +244,14 @@ async function go(){
   hist.push({role:'user',content:text});
   showTyp();
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
+    const res=await fetch('/chat',{
       method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'x-api-key':API_KEY,
-        'anthropic-version':'2023-06-01',
-        'anthropic-dangerous-direct-browser-access':'true'
-      },
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         model:'claude-sonnet-4-5',
-        tools:[{type:'web_search_20250305',name:'web_search'}],
         max_tokens:1000,
-        system:SYS+'\n\nMEMORY:\n'+JSON.stringify(mem,null,2),
+        system:SYS+'\n\nPerdoruesi: '+userName+'\nMEMORY:\n'+JSON.stringify(mem,null,2),
+        tools:[{type:'web_search_20250305',name:'web_search'}],
         messages:hist
       })
     });
@@ -306,8 +259,7 @@ async function go(){
     if(data.error)throw new Error(data.error.message);
     const reply=data.content.filter(b=>b.type==='text').map(b=>b.text||'').join('');
     remTyp();addMsg('nova',reply);
-    hist.push({role:'assistant',content:reply});
-    if(voiceEnabled)speak(reply);
+    hist.push({role:'assistant',content:data.content});
   }catch(e){
     remTyp();addMsg('nova','Dicka shkoi keq, Boss: '+e.message);
   }
@@ -318,7 +270,6 @@ function sq(t){inpEl.value=t;go();}
 inpEl.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();go();}});
 inpEl.addEventListener('input',()=>{inpEl.style.height='auto';inpEl.style.height=Math.min(inpEl.scrollHeight,100)+'px';});
 
-// VOICE
 function initVoice(){
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   if(!SR){document.getElementById('mic-btn').style.display='none';return;}
@@ -330,100 +281,24 @@ function initVoice(){
   recognition.onerror=()=>stopListening();
   recognition.onend=()=>stopListening();
 }
+
 function toggleVoice(){
   if(isListening){stopListening();return;}
-  voiceEnabled=true;isListening=true;
+  isListening=true;
   document.getElementById('mic-btn').classList.add('listening');
   document.getElementById('vstatus').style.display='block';
   if(recognition)recognition.start();
 }
+
 function stopListening(){
   isListening=false;
   document.getElementById('mic-btn').classList.remove('listening');
   document.getElementById('vstatus').style.display='none';
   if(recognition){try{recognition.stop();}catch(e){}}
 }
-async function speak(text){
-  if(EL_KEY){
-    try{
-      const r=await fetch('https://api.elevenlabs.io/v1/text-to-speech/'+EL_VOICE_ID,{
-        method:'POST',
-        headers:{'Content-Type':'application/json','xi-api-key':EL_KEY},
-        body:JSON.stringify({text:text,model_id:'eleven_multilingual_v2',voice_settings:{stability:0.5,similarity_boost:0.75}})
-      });
-      if(r.ok){
-        const blob=await r.blob();
-        const url=URL.createObjectURL(blob);
-        const audio=new Audio(url);
-        audio.play();
-        return;
-      }
-    }catch(e){console.log('ElevenLabs error:',e);}
-  }
-  // Fallback Web Speech
-  if(!window.speechSynthesis)return;
-  window.speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(text);
-  const voices=window.speechSynthesis.getVoices();
-  const femVoice=voices.find(v=>v.name.toLowerCase().includes("samantha"))
-    ||voices.find(v=>v.name.toLowerCase().includes("female"))
-    ||null;
-  if(femVoice)u.voice=femVoice;
-  u.rate=0.95;u.pitch=1.1;
-  window.speechSynthesis.speak(u);
-}
 
 updMem();
-
-function vizPanel(){document.getElementById('viz-modal').style.display='flex';}
-function closeViz(){document.getElementById('viz-modal').style.display='none';}
-function setVizPrompt(t){document.getElementById('viz-prompt').value=t;}
-
-function downloadViz(){
-  const out=document.getElementById('viz-output');
-  const blob=new Blob(['<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Nova Viz</title></head><body style="margin:0;background:#0a0a0f;">'+out.innerHTML+'</body></html>'],{type:'text/html'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='nova-viz.html';a.click();
-}
-
-async function generateViz(){
-  const prompt=document.getElementById('viz-prompt').value.trim();
-  if(!prompt)return;
-  const btn=document.getElementById('viz-gen-btn');
-  const out=document.getElementById('viz-output');
-  btn.textContent='Duke gjeneruar...';btn.disabled=true;
-  out.innerHTML='<span style="font-family:monospace;font-size:11px;color:#4e4a68;">Nova po krijon vizualizimin...</span>';
-
-  const vizSys=`Gjenero VETEM kod HTML te paster. Asnje fjale tjeter, asnje shpjegim, asnje backtick, asnje markdown. Vetem HTML qe fillon me <div dhe mbaron me </div>. Per grafike perdor Chart.js nga https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js. Ngjyrat: background #0a0a0f, tekst #e8e6f8, aksent #8278dc dhe #ffd740. Canvas height 350px. Responsive me padding 16px.`;
-
-  try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':API_KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-5',
-        max_tokens:4000,
-        system:vizSys,
-        messages:[{role:'user',content:'Krijo vizualizim per: '+prompt}]
-      })
-    });
-    const data=await res.json();
-    if(data.error)throw new Error(data.error.message);
-    let html=data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
-    html=html.replace(/```html/gi,'').replace(/```/g,'').trim();
-    if(!html.startsWith('<')){const m=html.match(/<div[\s\S]*<\/div>/i);if(m)html=m[0];}
-    out.innerHTML=html;
-    // Execute scripts
-    out.querySelectorAll('script').forEach(s=>{
-      const ns=document.createElement('script');
-      if(s.src)ns.src=s.src; else ns.textContent=s.textContent;
-      document.body.appendChild(ns);
-    });
-    document.getElementById('viz-dl-btn').style.display='block';
-  }catch(e){
-    out.innerHTML='<span style="color:#e24b4a;font-family:monospace;font-size:12px;">Gabim: '+e.message+'</span>';
-  }
-  btn.textContent='GJENERO VIZUALIZIMIN ❯';btn.disabled=false;
-}
 </script>
-</body>
-</html>
+
+
+</body></html>
