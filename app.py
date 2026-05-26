@@ -33,7 +33,7 @@ def speak():
         el_key = os.environ.get('EL_KEY', '')
         data = request.json
         text = data.get('text', '')
-        voice_id = 'cgSgspJ2msm6clMCkdW9'
+        voice_id = 'ocb5roe7gELIkZqiOElv'
         res = requests.post(
             f'https://api.elevenlabs.io/v1/text-to-speech/{voice_id}',
             headers={
